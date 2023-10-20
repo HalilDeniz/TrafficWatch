@@ -1,13 +1,12 @@
 # TrafficWatch
 
-TrafficWatch, a packet sniffer tool, allows you to monitor and analyze network traffic from PCAP files or live network interfaces. It provides insights into various network protocols and can help with network troubleshooting, security analysis, and more.
+TrafficWatch, a packet sniffer tool, allows you to monitor and analyze network traffic from PCAP files. It provides insights into various network protocols and can help with network troubleshooting, security analysis, and more.
 
 <img src="core/trafficwatch.png">
 
 
 ## Features
 
-- Packet capture from PCAP files or live network interfaces.
 - Protocol-specific packet analysis for ARP, ICMP, TCP, UDP, DNS, DHCP, HTTP, SNMP, LLMNR, and NetBIOS.
 - Packet filtering based on protocol, source IP, destination IP, source port, destination port, and more.
 - Summary statistics on captured packets.
