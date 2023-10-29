@@ -45,7 +45,7 @@ TrafficWatch, a packet sniffer tool, allows you to monitor and analyze network t
 
 ### Usage
 
-   ```
+   ```shell
  python3 trafficwatch.py --help
 usage: trafficwatch.py [-h] -f FILE [-p {ARP,ICMP,TCP,UDP,DNS,DHCP,HTTP,SNMP,LLMNR,NetBIOS}] [-c COUNT]
 
