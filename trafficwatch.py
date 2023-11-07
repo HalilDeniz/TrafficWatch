@@ -16,6 +16,12 @@ from colorama import Fore, Style
 from scapy.packet import Raw
 
 from core.trafficWatchfiglet import trafficwatchfiglet
+
+def read_and_save_pcap(packet_count, output_pcap_file):
+    packets = sniff(count=packet_count)
+    wrpcap(output_pcap_file, packets)
+    print(Fore.GREEN + f"Saved in output_pcap_file")
+
 def analyze_packets(packets, protocol_filter=None, packet_count=None):
     print(f"{Fore.CYAN}{trafficwatchfiglet()}{Style.RESET_ALL}")
     print("----------------------------------------")
@@ -266,15 +272,25 @@ def main():
     parser.add_argument('-f', '--file', required=True, help='Path to the .pcap file to analyze')
     parser.add_argument('-p', '--protocol', choices=['ARP', 'ICMP', 'TCP', 'UDP', 'DNS', 'DHCP', 'HTTP', 'SNMP', 'LLMNR', 'NetBIOS'], help='Filter by specific protocol')
     parser.add_argument('-c', '--count', type=int, help='Number of packets to display')
+    parser.add_argument('-w', '--write', help='Path to the .pcap file to write')
 
     args = parser.parse_args()
     pcap_file = args.file
     protocol_filter = args.protocol
     packet_count = args.count
+    output = args.write
+    if output:
+        if not ".pcap" in output:
+            output = output + ".pcap"
+        else:
+            pass
 
     packets = rdpcap(pcap_file)
 
     analyze_packets(packets, protocol_filter, packet_count)
+    if output:
+        read_and_save_pcap(packet_count,output)
+
 
 if __name__ == '__main__':
     main()
