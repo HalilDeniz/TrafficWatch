@@ -16,6 +16,7 @@ from colorama import Fore, Style
 from scapy.packet import Raw
 
 from core.trafficWatchfiglet import trafficwatchfiglet
+
 def analyze_packets(packets, protocol_filter=None, packet_count=None):
     print(f"{Fore.CYAN}{trafficwatchfiglet()}{Style.RESET_ALL}")
     print("----------------------------------------")
@@ -266,15 +267,22 @@ def main():
     parser.add_argument('-f', '--file', required=True, help='Path to the .pcap file to analyze')
     parser.add_argument('-p', '--protocol', choices=['ARP', 'ICMP', 'TCP', 'UDP', 'DNS', 'DHCP', 'HTTP', 'SNMP', 'LLMNR', 'NetBIOS'], help='Filter by specific protocol')
     parser.add_argument('-c', '--count', type=int, help='Number of packets to display')
+    parser.add_argument('-w', '--write', help='Path to the .pcap file to write')
 
     args = parser.parse_args()
     pcap_file = args.file
     protocol_filter = args.protocol
     packet_count = args.count
+    output = args.write
 
     packets = rdpcap(pcap_file)
 
     analyze_packets(packets, protocol_filter, packet_count)
-
+    if output:
+        if not ".pcap" in output:
+            output = output + ".pcap"
+        filtered_packets = packets[:packet_count] if packet_count is not None else packets
+        wrpcap(output, filtered_packets)
+        print(Fore.GREEN + f"Saved in {output}")
 if __name__ == '__main__':
     main()
