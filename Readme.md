@@ -46,8 +46,8 @@ TrafficWatch, a packet sniffer tool, allows you to monitor and analyze network t
 ### Usage
 
    ```shell
- python3 trafficwatch.py --help
-usage: trafficwatch.py [-h] -f FILE [-p {ARP,ICMP,TCP,UDP,DNS,DHCP,HTTP,SNMP,LLMNR,NetBIOS}] [-c COUNT]
+python3 trafficwatch.py --help                                    
+usage: trafficwatch.py [-h] -f FILE [-p {ARP,ICMP,TCP,UDP,DNS,DHCP,HTTP,SNMP,LLMNR,NetBIOS}] [-c COUNT] [-w WRITE]
 
 Packet Sniffer Tool
 
@@ -58,7 +58,8 @@ options:
                         Filter by specific protocol
   -c COUNT, --count COUNT
                         Number of packets to display
-
+  -w WRITE, --write WRITE
+                        Path to the .pcap file to write
    ```
 
 
@@ -79,9 +80,9 @@ python trafficwatch.py -f path/to/your.pcap -p HTTP -c 10
 - `-f` or `--file`: Path to the PCAP file for analysis.
 - `-p` or `--protocol`: Filter packets by protocol (ARP, ICMP, TCP, UDP, DNS, DHCP, HTTP, SNMP, LLMNR, NetBIOS).
 - `-c` or `--count`: Limit the number of displayed packets.
-
+- `-w` or `--write`: Path to the .pcap file to write.
+- 
 ## Contributing
-
 Contributions are welcome! If you want to contribute to TrafficWatch, please follow our [contribution guidelines](CONTRIBUTING.md).
 
 ## Contact
