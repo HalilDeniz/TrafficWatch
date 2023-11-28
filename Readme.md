@@ -42,6 +42,10 @@ TrafficWatch, a packet sniffer tool, allows you to monitor and analyze network t
    ```shell
    pip install -r requirements.txt
    ```
+4. Setup TrafficWatch:
+   ```bash
+   $ python3 setup.py install
+   ```
 
 ### Usage
 
